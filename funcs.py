@@ -1,6 +1,4 @@
-from azure.storage.blob import BlobClient
 import azure.cosmos.exceptions as exceptions
-from azure.cosmos.partition_key import PartitionKey
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import flash, redirect, url_for
 from flask_login import UserMixin, current_user
