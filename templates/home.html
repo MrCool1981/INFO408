@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block main %}
+
+  
+<style>  
+  .nice-box {  
+    border: 1px solid #ddd;  
+    border-radius: 4px;  
+    padding: 15px;  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+    margin-bottom: 20px;  
+    background-color: #f5f5f5;
+  }   
+</style>  
+
+<body>
+
+<div class="container"> 
+  <div class="nice-box">
+    <table class="table table-bordered table-striped"> >  
+        <tr>  
+            <th>Description​</th>  
+            <td>The objective of this project is to design and construct a database that can accommodate a large-scale data set using a suitable database management system (DBMS). The project involves selecting a data set and target DBMS, creating a database design, implementing the design in the chosen DBMS, and documenting the design and implementation process. The dataset should be freely available online, contain between 100 MB and 2 GB of data, and display some internal complexity. It should also require some transformation before being loaded into the chosen database. To complement the dataset's natural structure, a suitable DBMS will be selected, which may not necessarily match the dataset's given structure. The project's focus is on the database's design and construction, rather than the dataset's analysis. Depending on the chosen dataset and DBMS, the design requirements may vary. The final step involves importing the dataset into the built database using appropriate import tools or a custom program. The project's outcome is a short technical report documenting the database design and implementation process. It will include an overview of the dataset, justification for the DBMS choice, a detailed discussion of the database implementation, and a discussion of the dataset importation process. ​</td>  
+        </tr>  
+        <tr>  
+            <th>Solution​</th>  
+            <td>
+              <p><strong>Dataset:</strong> The dataset used in this project is the Serum metabolites data, which is available in XML format from the <a href="https://hmdb.ca/">Human Metabolome Database (HMDB)</a>.</p>
+              <p><strong>Target Database:</strong> The target database for this project is <a href="https://azure.microsoft.com/en-us/products/cosmos-db">Microsoft Azure Cosmos DB</a>, utilizing its NoSQL API.</p>           
+              <p><strong>Interactive tool:</strong> A simple webapp with a sample search example. </p>
+              <p><strong>Tools Used:</strong> The tools utilized in this project include the Python SDK for Azure Cosmos DB NoSQL API, Jupyter Notebook for data manipulation, and Flask for the back-end of the web application. For the front-end of the web application, HTML, Jinja templates, CSS, and Bootstrap were employed. The project was deployed using Azure Cosmos DB, Azure WebApp, and Azure AppService, along with various Python packages to assist in the development process.</p>​</td>  
+        </tr> 
+    </table> 
+  </div>  
+</div>  
+
+{% endblock %}

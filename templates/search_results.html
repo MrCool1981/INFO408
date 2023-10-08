@@ -1,0 +1,60 @@
+{% extends 'base.html' %}  
+  
+{% block title %}Search results{% endblock %}  
+  
+{% block main %}  
+  
+<!-- Custom CSS -->  
+<style>  
+  .table-container {  
+    display: flex;  
+    justify-content: center;  
+    width: 100%;  
+  }  
+  .table-wrapper {  
+    width: 90%;  
+  }  
+</style>  
+  
+<body>    
+  <h2 style="text-align:center;">Search Results</h2> 
+  {% if items %}
+    <div class="container mt-3">  
+      <div class="table-container"> <!-- Add the table-container class -->  
+        <div class="table-wrapper"> <!-- Add the table-wrapper class -->  
+          <div class="table-responsive">   
+            <div class="table-responsive-sm">            
+              <table class="table table-bordered" style="width: 100%;">  
+                <thead>    
+                  <tr>    
+                      {% for key in items[0].keys() %}    
+                      <th>{{ key }}</th>    
+                      {% endfor %}    
+                  </tr>    
+                </thead>    
+                <tbody>    
+                  {% for item in items %}    
+                  <tr>    
+                      {% for key,value in item.items() %}
+                      {% if  key == "ID" %}                      
+                        <td><a href="https://hmdb.ca/metabolites/{{ value }}" target="_blank">{{ value }}</a></td>
+                      {% elif  key == "PubChem ID" and value != None %}                      
+                        <td><a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ value }}" target="_blank">{{ value }}</a></td>    
+                      {% else %}
+                        <td>{{ value }}</td>
+                      {% endif %} 
+                      {% endfor %}    
+                  </tr>    
+                  {% endfor %}    
+                </tbody>    
+              </table>  
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  {% else %}    
+  <p>No results found for the selected attributes.</p>    
+  {% endif %}  
+</body>  
+{% endblock %}  

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Add user{% endblock %}
+
+{% block main %}
+<style>
+   .system-message {  
+    border: 1px solid #007bff;  
+    border-radius: 4px;  
+    background-color: #007bff;  
+    color: #fff;  
+    padding: 15px;  
+    margin-bottom: 20px;  
+  }
+  .nice-box select {  
+    width: 100%;  
+    padding: 10px;  
+    margin-bottom: 10px;  
+    font-size: 16px;  
+    border-radius: 4px;  
+    border: 1px solid #ddd;  
+  }  
+</style>
+<div class="container">  
+  <div class="text-center">  
+    <div class="system-message">  
+      <h1 class="jumbotron-heading">Add user</h1>  
+    </div>  
+  </div>
+
+  <div class="nice-box">
+    <div class="card-deck mb-3">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <form action="{{url_for('add_user_page')}}" method="post" enctype="multipart/form-data">
+            <h4>User email</h4>
+            <input type="email" class="form-control" name="email" placeholder="John.Doe@fonterra.com" required>
+            <br>
+            <h4>User password</h4>
+            <input type="password" class="form-control" name="password" required>
+            <br>
+            <h4>User role</h4>
+            <select name="role" required>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

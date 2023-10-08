@@ -1,0 +1,106 @@
+{% extends 'base.html' %}  
+  
+{% block title %}Users{% endblock %}  
+  
+{% block main %}
+
+
+  
+<!-- Custom CSS -->  
+<style>  
+    .table-container {  
+        display: flex;  
+        justify-content: center;  
+        width: 100%;  
+    }  
+    .table-wrapper {  
+        width: 90%;  
+    }
+    .custom-button-container {  
+      position: absolute;  
+      left: 25%; /* Adjust this value to move the button horizontally */  
+      transform: translateX(-50%);  
+    }
+    .btn-space {  
+      margin-right: 10px;  
+    }  
+</style>
+
+<body>
+    <br>
+    <div class="custom-button-container">
+        <form method="get" action="/add_user">
+            <button type="submit" class="btn btn-primary">Add user</button>
+        </form>
+    </div>
+    <br>
+    {% if users %}
+    <div class="text-center">  
+        <div class="system-message">  
+          <h2 class="jumbotron-heading">List of all users</h2>  
+        </div>  
+    </div>
+    <form method="post" action="/users">  <!-- Add form tag -->
+        <div class="container mt-3">
+            <div class="table-container">  
+                <div class="table-wrapper">  
+                    <div class="table-responsive">  
+                        <div class="table-responsive-sm">  
+                            <table class="table table-bordered" style="width: 100%;">  
+                                <thead>  
+                                    <tr>  
+                                        <th>Select</th>  <!-- Add a new table header for radio buttons -->  
+                                        {% for key in users[0].keys() %}  
+                                            <th>{{ key }}</th>  
+                                        {% endfor %}
+                                        <th>Update role</th>
+                                    </tr>  
+                                </thead>  
+                                <tbody>  
+                                    {% for user in users %}  
+                                        <tr>  
+                                            <td>  
+                                                <input type="radio" name="user_id" value="{{ user.email }}" required>  
+                                            </td>  <!-- Add a radio button for each file -->  
+                                            {% for value in user.values() %}                                         
+                                                <td>{{ value }}</td>
+                                            {% endfor %} 
+                                            <td>
+                                                <select name="role_{{ user.email }}">
+                                                    <option value="">--Select role--</option> 
+                                                    <option value="admin">Admin</option>
+                                                    <option value="user">User</option>
+                                                </select>
+                                            </td>
+                                            <td>  
+                                                <button type="submit" class="btn btn-primary btn-space">Update role</button>
+                                            </td>
+                                        </tr>  
+                                    {% endfor %}
+                                    <br>
+                                </tbody>
+                                <nav aria-label="Page navigation example">  
+                                    <ul class="pagination">  
+                                        <li class="page-item {% if not prev_url %}disabled{% endif %}"><a class="page-link" href="{{ prev_url }}">Previous</a></li>  
+                                        <li class="page-item {% if not next_url %}disabled{% endif %}"><a class="page-link" href="{{ next_url }}">Next</a></li>  
+                                    </ul>  
+                                </nav>
+                            </table>
+                            <div class="btn-group">  
+                                <input type="hidden" name="delete" value="False">  
+                                <input type="hidden" name="delete" value="True" disabled>  
+                                <button type="submit" class="btn btn-danger" onclick="this.previousElementSibling.disabled = false; this.previousElementSibling.previousElementSibling.disabled = true;">DELETE</button>  
+                            </div>  
+                        </div>  
+                    </div>  
+                </div>
+            </div>           
+        </div>
+    </form>  <!-- Close form tag -->
+
+    {% else %}  
+        <p>No current users</p>
+    {% endif %}
+</body>  
+  
+{% endblock %}
